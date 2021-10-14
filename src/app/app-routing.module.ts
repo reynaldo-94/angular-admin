@@ -3,44 +3,28 @@ import { NgModule } from '@angular/core';
 
 // Importamos el modulo del Router
 import { RouterModule, Routes } from '@angular/router'
-import { LoginComponent } from './auth/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { ProgressComponent } from './pages/progress/progress.component';
-import { Grafica1Component } from './pages/grafica1/grafica1.component';
-import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
-import { PagesComponent } from './pages/pages.component';
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { PagesRoutingModule } from './pages/pages.routing';
+import { AuthRoutingModule } from './auth/auth.routing';
 
 // Configuramos la ruta de mi aplicacion
 const routes: Routes = [
 
-  // Rutas protegidas
-  {
-    path: '',
-    component: PagesComponent,
-    // Rutas Hijas
-    children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'progress', component: ProgressComponent },
-      { path: 'grafica1', component: Grafica1Component },
-      // Si estoy en la ruta con el slash vacion redirecciona a dashboard
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-    ]
-  },
+  // path: '/dashboard' PagesRouting
+  // path: '/auth' AuthRouting
+  // path: '/medicos' MedicosRouting
+  // path: '/compras' ComprasRouting
 
-  // Rutas publicas
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-
+  // Path de ruta por defecto
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   // Navege a una ruta que no exista en la aplicacion
   { path: '**', component: NopagefoundComponent }
 ]
-
-
 @NgModule({
-  declarations: [],
   imports: [
-    RouterModule.forRoot( routes )
+    RouterModule.forRoot( routes ),
+    PagesRoutingModule,
+    AuthRoutingModule
   ],
   exports: [ RouterModule ]
 })
