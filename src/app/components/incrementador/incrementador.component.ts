@@ -20,7 +20,7 @@ export class IncrementadorComponent implements OnInit {
   @Input() btnClass: string = 'btn-primary'
 
   // El output es de tipo eventEmitter
-  // El eventEmitter necesita saber que informacion es la fluye a traves de el
+  // El eventEmitter necesita saber que informacion es la que fluye a traves de el
   // Inicializamos con new EventEmitter
   @Output('valor') valorSalida: EventEmitter<number> = new EventEmitter()
 
